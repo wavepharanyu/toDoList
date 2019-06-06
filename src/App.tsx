@@ -1,7 +1,7 @@
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import WelcomeScreen from './screens/WelcomeScreen';
-import HomeScreen from './screens/HomeScreen';
+import HomeScreen from './screens/Home/HomeScreen';
 import AnotherScreen from './screens/AnotherScreen';
 
 import createSwitchAnimatedNavigator from 'react-navigation-animated-switch';
