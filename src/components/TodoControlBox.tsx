@@ -40,7 +40,7 @@ function TodoControlBox(props: TodoControlBoxProps) {
                 onChangeText={text => setText(text)}
                 value={text}
             />
-            <Button title="Add" onPress={() => props.onInsertTodo(text)} />
+            <Button title="Add" onPress={() => { if (text !== '') { props.onInsertTodo(text); setText(""); }}} />
         </View>
     );
 }

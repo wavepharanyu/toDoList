@@ -10,7 +10,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { TodoData } from './stores/definitions';
 import { AppStates } from '../../store/states';
 import { AtLeastOne } from '../../helpers/types';
-import { insertTodo, deleteTodo } from './stores/actions';
+import { insertTodo, deleteTodo, beginEdit, endEdit } from './stores/actions';
 
 const styles = StyleSheet.create({
     container: {
@@ -26,7 +26,9 @@ interface Props extends NavigationScreenProps {
     todos: TodoData[];
     editingIndex: number;
     onInsertTodo: (message: string) => void;
+    onEditBegin: (index: number) => void;
     onDeleteTodo: (index: number) => void;
+    onEditEnd: (message: string) => void;
 }
 
 function mapStateToProps(globalState: AppStates, ownProps) {
@@ -40,7 +42,9 @@ function mapStateToProps(globalState: AppStates, ownProps) {
 function mapDispatchToProps(dispatch, ownProps) {
     return {
         onInsertTodo: (message: string) => dispatch(insertTodo(message)),
-        onDeleteTodo: (index: number) => dispatch(deleteTodo(index))
+        onEditBegin: (index: number) => dispatch(beginEdit(index)),
+        onDeleteTodo: (index: number) => dispatch(deleteTodo(index)),
+        onEditEnd: (message: string) => dispatch(endEdit(message))
     };
 }
 
@@ -54,7 +58,13 @@ function HomeScreen(props: Props) {
         <View style={styles.container}>
             <TodoControlBox onInsertTodo={message => props.onInsertTodo(message)}/>
             <ScrollView style={{ backgroundColor: 'orange' }}>
-                <TodoList todos={props.todos} onDeleteTodo={index => props.onDeleteTodo(index)} />
+                <TodoList 
+                    todos={props.todos} 
+                    editingIndex={props.editingIndex} 
+                    onEditBegin={index => props.onEditBegin(index)} 
+                    onDeleteTodo={index => props.onDeleteTodo(index)} 
+                    onEditEnd={message => props.onEditEnd(message)}
+                />
             </ScrollView>
             <Button
                 onPress={() => handleNextScreenButton()}

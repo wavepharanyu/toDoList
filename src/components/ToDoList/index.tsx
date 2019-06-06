@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
 
 interface TodoListProps {
     todos: TodoData[];
+    editingIndex: number;
+    onEditBegin: (index: number) => void;
+    onEditEnd: (message: string) => void;
     onDeleteTodo: (index: number) => void;
 }
 
@@ -25,8 +28,8 @@ function TodoList(props: TodoListProps) {
         <View style={styles.root}>
             { 
                 todos.map((todo, index) => (
-                    <TouchableNativeFeedback key={`${todo.message}:${index}`} onLongPress={() => props.onDeleteTodo(index)}>
-                        <TodoListItem message={todo.message} />       
+                    <TouchableNativeFeedback key={`${todo.message}:${index}`} onPress={() => props.onEditBegin(index)} onLongPress={() => props.onDeleteTodo(index)}>
+                        <TodoListItem message={todo.message} isEditing={index === props.editingIndex} onEditEnd={props.onEditEnd} />       
                     </TouchableNativeFeedback>  
                 ))
             }
