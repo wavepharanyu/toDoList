@@ -13,6 +13,6 @@ export function beginEdit(index: number): BeginEditAction {
     return { type: ACTION_EDIT_BEGIN, index };
 }
 
-export function endEdit(message: string): EndEditAction {
-    return { type: ACTION_EDIT_END, message };
+export function endEdit(index: number, message: string): EndEditAction {
+    return { type: ACTION_EDIT_END, index, message };
 }

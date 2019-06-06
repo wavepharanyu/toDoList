@@ -23,5 +23,6 @@ export interface BeginEditAction extends AppAction {
 }
 
 export interface EndEditAction extends AppAction {
+    index: number;
     message: string;
 }

@@ -36,7 +36,7 @@ export default function(state: TodoStates = initialState, action: AppAction) {
         case ACTION_EDIT_END: {
             const act = action as EndEditAction;
             const todos = state.todos.map((todo, index) => {
-                if (index === state.editingIndex) {
+                if (index === act.index) {
                     return { message: act.message }
                 } else {
                     return todo;
@@ -44,7 +44,7 @@ export default function(state: TodoStates = initialState, action: AppAction) {
             });
 
             return Object.assign({}, state, {
-                editingIndex: -1,
+                editingIndex: (state.editingIndex === act.index) ? -1 : state.editingIndex,
                 todos
             } as AtLeastOne<TodoStates>);
         }

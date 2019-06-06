@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Alert, StyleProp } from "react-native";
 import { TextInput } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
@@ -16,18 +16,21 @@ interface TodoListItemProps {
     onEditEnd: (message: string) => void;
 }
 
+function showOnTrue(value: boolean) {
+    return { display: value ? 'flex' : 'none' } as { display: 'flex' | 'none' };
+}
+
 function TodoListItem(props: TodoListItemProps) {
     const { message } = props;
-
     const [ text, setText ] = useState(message);
 
     return (
         <View style={styles.root}>
-            { props.isEditing ? 
-                <TextInput value={text} onChangeText={text => setText(text)} onBlur={() => props.onEditEnd(text)} /> 
-                :
-                <Text>{ message }</Text> 
-            }
+            {/* { props.isEditing ?  */}
+                <TextInput style={showOnTrue(props.isEditing)} value={text} onChangeText={text => setText(text)} onBlur={() => props.onEditEnd(text)} /> 
+                {/* : */}
+                <Text style={showOnTrue(!!!props.isEditing)}>{ message } : { text }</Text> 
+            {/* } */}
         </View>
     );
 }

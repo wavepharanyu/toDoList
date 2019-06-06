@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Alert } from "react-native";
 
 import TodoListItem from './TodoListItem';
 import { TodoData } from '../../screens/Home/stores/definitions';
@@ -18,7 +18,7 @@ interface TodoListProps {
     todos: TodoData[];
     editingIndex: number;
     onEditBegin: (index: number) => void;
-    onEditEnd: (message: string) => void;
+    onEditEnd: (index: number, message: string) => void;
     onDeleteTodo: (index: number) => void;
 }
 
@@ -29,7 +29,7 @@ function TodoList(props: TodoListProps) {
             { 
                 todos.map((todo, index) => (
                     <TouchableNativeFeedback key={`${todo.message}:${index}`} onPress={() => props.onEditBegin(index)} onLongPress={() => props.onDeleteTodo(index)}>
-                        <TodoListItem message={todo.message} isEditing={index === props.editingIndex} onEditEnd={props.onEditEnd} />       
+                        <TodoListItem message={todo.message} isEditing={index === props.editingIndex} onEditEnd={message => props.onEditEnd(index, message)} />       
                     </TouchableNativeFeedback>  
                 ))
             }

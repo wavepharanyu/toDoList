@@ -28,7 +28,7 @@ interface HomeScreenProps extends NavigationScreenProps {
     onInsertTodo: (message: string) => void;
     onEditBegin: (index: number) => void;
     onDeleteTodo: (index: number) => void;
-    onEditEnd: (message: string) => void;
+    onEditEnd: (index: number, message: string) => void;
 }
 
 function mapStateToProps(globalState: AppStates, ownProps) {
@@ -44,7 +44,7 @@ function mapDispatchToProps(dispatch, ownProps) {
         onInsertTodo: (message: string) => dispatch(insertTodo(message)),
         onEditBegin: (index: number) => dispatch(beginEdit(index)),
         onDeleteTodo: (index: number) => dispatch(deleteTodo(index)),
-        onEditEnd: (message: string) => dispatch(endEdit(message))
+        onEditEnd: (index: number, message: string) => dispatch(endEdit(index, message))
     };
 }
 
@@ -63,7 +63,7 @@ function HomeScreen(props: HomeScreenProps) {
                     editingIndex={props.editingIndex} 
                     onEditBegin={index => props.onEditBegin(index)} 
                     onDeleteTodo={index => props.onDeleteTodo(index)} 
-                    onEditEnd={message => props.onEditEnd(message)}
+                    onEditEnd={(index, message) => props.onEditEnd(index, message)}
                 />
             </ScrollView>
             <Button
