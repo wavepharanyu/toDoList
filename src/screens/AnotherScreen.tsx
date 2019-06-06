@@ -24,11 +24,11 @@ const styles = StyleSheet.create({
     },
 });
 
-interface Props extends NavigationScreenProps {
+interface AnotherScreenProps extends NavigationScreenProps {
 
 }
 
-function AnotherScreen(props: Props) {
+function AnotherScreen(props: AnotherScreenProps) {
 
     const handleBackButton = () => {
         props.navigation.goBack()

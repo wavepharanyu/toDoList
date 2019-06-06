@@ -10,13 +10,13 @@ const styles = StyleSheet.create({
     }
 });
 
-interface Props {
+interface TodoListItemProps {
     message: string;
     isEditing: boolean;
     onEditEnd: (message: string) => void;
 }
 
-function TodoListItem(props: Props) {
+function TodoListItem(props: TodoListItemProps) {
     const { message } = props;
 
     const [ text, setText ] = useState(message);

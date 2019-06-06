@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
     }
 });
 
-interface Props extends NavigationScreenProps {
+interface WelcomeScreenProps extends NavigationScreenProps {
 
 }
 
-function WelcomeScreen(props: Props) {
+function WelcomeScreen(props: WelcomeScreenProps) {
 
     useEffect(() => {
         setTimeout(() => {

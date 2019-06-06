@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     }
 });
 
-interface Props extends NavigationScreenProps {
+interface HomeScreenProps extends NavigationScreenProps {
     todos: TodoData[];
     editingIndex: number;
     onInsertTodo: (message: string) => void;
@@ -36,7 +36,7 @@ function mapStateToProps(globalState: AppStates, ownProps) {
     return {
         todos: state.todos,
         editingIndex: state.editingIndex
-    } as AtLeastOne<Props>;
+    } as AtLeastOne<HomeScreenProps>;
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
@@ -48,7 +48,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     };
 }
 
-function HomeScreen(props: Props) {
+function HomeScreen(props: HomeScreenProps) {
 
     const handleNextScreenButton = () => {
         props.navigation.navigate('Another')
