@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {Platform, StyleSheet, Text, View, Button, Switch} from 'react-native';
 
-import { } from 'redux';
-import { connect } from 'react-redux';
+import { connect, Provider } from 'react-redux';
+import configureStore from './src/store/configureStore';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -38,7 +38,14 @@ function App(props: Props) {
   );
 }
 
-export default connect(null, null)(App);
+export default function Main(props) {
+  const store = configureStore(null, {});
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+}
 
 // export default class App extends React.Component<Props, States> {
 //   state = {

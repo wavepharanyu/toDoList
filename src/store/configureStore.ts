@@ -3,10 +3,24 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 // import createSagaMiddleware from'redux-saga';
 // import thunk from 'redux-thunk';
 
+const initialState = {
+    counter: 0
+};
+
 export default function configureStore(history, preloadedState = {}) {
 
     const rootReducer = history => combineReducers({
         // router: connectRouter(history),
+        main: function(state: typeof initialState = initialState, action) {
+            switch (action.type) {
+                case 'ACTION_INCREMENT_COUNTER':
+                    return Object.assign({}, state, {
+                        counter: state.counter + 1
+                    })
+                default:
+                    return state;
+            }
+        }
     });
 
     // for redux-saga
