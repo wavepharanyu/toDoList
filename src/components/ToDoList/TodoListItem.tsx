@@ -29,7 +29,7 @@ function TodoListItem(props: TodoListItemProps) {
             {/* { props.isEditing ?  */}
                 <TextInput style={showOnTrue(props.isEditing)} value={text} onChangeText={text => setText(text)} onBlur={() => props.onEditEnd(text)} /> 
                 {/* : */}
-                <Text style={showOnTrue(!!!props.isEditing)}>{ message } : { text }</Text> 
+                <Text style={showOnTrue(!!!props.isEditing)}>{ message }</Text> 
             {/* } */}
         </View>
     );
